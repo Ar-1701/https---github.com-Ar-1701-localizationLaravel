@@ -52,15 +52,15 @@
                         <tbody>
                             @foreach ($post as $row)
                                 <tr>
-                                    <th scope="row">{{ $row->id }}</th>
-                                    <td>{{ $row->post_title }}</td>
-                                    <td>{{ $row->post_cat }}</td>
-                                    <td>{{ substr($row->post_desc, 0, 200) }}</td>
-                                    <td><img src="{{ asset('public/upload/post/' . $row->post_img) }}"
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $row['post_title'] }}</td>
+                                    <td>{{ $row['post_cat'] }}</td>
+                                    <td>{{ substr($row['post_desc'], 0, 200) }}</td>
+                                    <td><img src="{{ asset('public/upload/post/' . $row['post_img']) }}"
                                             class="img-fluid w-25 text-center" alt="" srcset="">
                                     </td>
                                     <td>
-                                        <a href="{{ url('add_post?lang_id=') . $row->lang_id . '&post_id=' . $row->post_id . '&id=' . $row->id }}"
+                                        <a href="{{ url('add_post?lang_id=') . $row['language_id'] . '&post_id=' . $row['post_id'] . '&id=' . $row['id'] }}"
                                             class="btn text-center text-light btn-primary">Edit</a>
                                     </td>
                                 </tr>

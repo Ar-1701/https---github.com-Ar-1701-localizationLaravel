@@ -39,35 +39,28 @@
     </div>
     <form id="add_form" class="row g-3 w-50 m-auto border border-3 p-1">
         @csrf
-        {{-- <?php if (count($singleLang)>0){ ?> --}}
-        @foreach ($singleData as $singleData)
-            {{-- @foreach ($lang as $item) --}}
-            @php
-                $singleLang = App\Models\Language::find($singleData->language_id);
-
-            @endphp
+        <?php if (count($singleLang)>0){ ?>
+        @foreach ($singleLang as $item)
             <div class="col-md-12">
-                <label for="inputEmail4" class="form-label">Title - {{ $singleLang->lang }}</label>
-                <input type="hidden" name='locale[]' id='locale' value="{{ $singleData->language_id }}"
-                    class="form-control">
-                <input type="hidden" name='id[]' id='id' value="{{ $singleData->id }}" class="form-control">
-                <input type="text" name='title[]' id='title' value="{{ $singleData->post_title }}"
+                <label for="inputEmail4" class="form-label">Title - {{ $item->lang }}</label>
+                <input type="hidden" name='locale' id='locale' value="{{ $item->id }}" class="form-control">
+                <input type="hidden" name='id' id='id' value="{{ $singleData->id }}" class="form-control">
+                <input type="text" name='title' id='title' value="{{ $singleData->post_title }}"
                     class="form-control"placeholder="Title">
             </div>
             <div class="col-md-12">
-                <label for="inputPassword4" class="form-label">Post Category - {{ $singleLang->lang }}</label>
-                <input type="text"name='post_cat[]' id='post_cat' class="form-control"
+                <label for="inputPassword4" class="form-label">Post Category - {{ $item->lang }}</label>
+                <input type="text"name='post_cat' id='post_cat' class="form-control"
                     placeholder="Category"value="{{ $singleData->post_cat }}">
             </div>
             <div class="col-12">
-                <label for="inputAddress" class="form-label">Description - {{ $singleLang->lang }}</label>
-                <textarea rows="5" class="form-control"name='post_desc[]' id='post_desc' placeholder="Description">{{ $singleData->post_desc }}
-                </textarea>
+                <label for="inputAddress" class="form-label">Description - {{ $item->lang }}</label>
+                <textarea rows="5" class="form-control"name='post_desc' id='post_desc' placeholder="Description">{{ $singleData->post_desc }}
+                    </textarea>
             </div>
-            {{-- @endforeach --}}
         @endforeach
-        {{-- <?php } else{ ?> --}}
-        {{-- @foreach ($lang as $item)
+        <?php } else{ ?>
+        @foreach ($lang as $item)
             <div class="col-md-12">
                 <label for="inputEmail4" class="form-label">Title - {{ $item->lang }}</label>
                 <input type="hidden" name='locale[]' id='locale' value="{{ $item->id }}" class="form-control">
@@ -83,8 +76,8 @@
                 <label for="inputAddress" class="form-label">Description - {{ $item->lang }}</label>
                 <textarea rows="5" class="form-control"name='post_desc[]' id='post_desc' placeholder="Description"></textarea>
             </div>
-        @endforeach --}}
-        {{-- <?php }?> --}}
+        @endforeach
+        <?php }?>
         <div class="col-12">
             <label for="inputAddress2" class="form-label">Image</label>
             <input type="file" class="form-control" id="img"name="img">
